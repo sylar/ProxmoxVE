@@ -37,7 +37,7 @@ update_deb_based() {
     msg_error "No ${APP} Installation Found!"
     exit
   fi
-  GITEA_RELEASE=$(curl -fsSL https://api.github.com/repos/deuxfleurs-org/garage/tags | jq -r '.[0].name')
+  GITEA_RELEASE="v2.6.0"
   if [[ "${GITEA_RELEASE}" != "$(cat ~/.garage 2>/dev/null)" ]] || [[ ! -f ~/.garage ]]; then
     msg_info "Stopping Service"
     systemctl stop garage
@@ -69,7 +69,7 @@ update_alpine() {
     exit
   fi
 
-  GITEA_RELEASE=$(curl -fsSL https://api.github.com/repos/deuxfleurs-org/garage/tags | jq -r '.[0].name')
+  GITEA_RELEASE="v2.6.0"
   if [[ "${GITEA_RELEASE}" != "$(cat ~/.garage 2>/dev/null)" ]] || [[ ! -f ~/.garage ]]; then
     msg_info "Stopping Service"
     rc-service garage stop || true
